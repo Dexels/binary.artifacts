@@ -18,6 +18,7 @@
 
 DIRNAME=`dirname "$0"`
 PROGNAME=`basename "$0"`
+source ./variables.sh
 
 #
 # Sourcing environment settings for karaf similar to tomcats setenv
@@ -304,6 +305,7 @@ run() {
         KARAF_ETC=`cygpath --path --windows "$KARAF_ETC"`
         CLASSPATH=`cygpath --path --windows "$CLASSPATH"`
     fi
+    JAVA_OPTS="${JAVA_OPTS} ${NAVAJO_OPTS}"
 
     exec "$JAVA" $JAVA_OPTS -Dkaraf.instances="${KARAF_HOME}/instances" -Dkaraf.home="$KARAF_HOME" -Dkaraf.base="$KARAF_BASE" -Dkaraf.etc="$KARAF_ETC" -Djava.io.tmpdir="$KARAF_DATA/tmp" -Djava.util.logging.config.file="$KARAF_BASE/etc/java.util.logging.properties" $KARAF_OPTS $OPTS -classpath "$CLASSPATH" org.apache.karaf.client.Main "$@"
 }

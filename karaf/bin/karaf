@@ -19,6 +19,14 @@
 DIRNAME=`dirname $0`
 PROGNAME=`basename $0`
 
+#YOURKIT=-agentpath:/Users/frank/Downloads/YourKit_Java_Profiler_2013_build_13066.app/bin/mac/libyjpagent.jnilib=disablestacktelemetry,disableexceptiontelemetry,delay=10000
+
+
+# consider setting? JAVA_MAX_MEM
+#JAVA_MAX_MEM=3000M 
+#${YOURKIT}
+
+
 #
 # Sourcing environment settings for karaf similar to tomcats setenv
 #
@@ -27,6 +35,9 @@ export KARAF_SCRIPT
 if [ -f "$DIRNAME/setenv" ]; then
   . "$DIRNAME/setenv"
 fi
+
+source ./variables.sh
+source ./parameters.sh
 
 #
 # Set up some easily accessible MIN/MAX params for JVM mem usage
@@ -406,7 +417,8 @@ run() {
         JAVA_EXT_DIRS=`cygpath --path --windows "$JAVA_EXT_DIRS"`
     fi
     cd "$KARAF_BASE"
-
+JAVA_OPTS="${JAVA_OPTS} ${NAVAJO_OPTS}" 
+echo "NAVAJO_OPTIONS: ${NAVAJO_OPTS}"
     exec "$JAVA" $JAVA_OPTS -Djava.endorsed.dirs="${JAVA_ENDORSED_DIRS}" -Djava.ext.dirs="${JAVA_EXT_DIRS}" -Dkaraf.instances="${KARAF_HOME}/instances" -Dkaraf.home="$KARAF_HOME" -Dkaraf.base="$KARAF_BASE" -Dkaraf.data="$KARAF_DATA" -Dkaraf.etc="$KARAF_ETC" -Djava.io.tmpdir="$KARAF_DATA/tmp" -Djava.util.logging.config.file="$KARAF_BASE/etc/java.util.logging.properties" -Djavax.management.builder.initial=org.apache.karaf.management.boot.KarafMBeanServerBuilder $KARAF_OPTS $OPTS -classpath "$CLASSPATH" $MAIN "$@"
 }
 
