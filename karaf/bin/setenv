@@ -47,5 +47,8 @@
 # export KARAF_OPTS # Additional available Karaf options
 # export KARAF_DEBUG # Enable debug mode
 
-export KARAF_DATA=/var/navajo/data
+if [ "x$KARAF_DATA" = "x" ]; then
+  export KARAF_DATA=/var/navajo/data
+fi
+
 
