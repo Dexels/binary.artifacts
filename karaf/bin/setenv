@@ -51,4 +51,20 @@ if [ "x$KARAF_DATA" = "x" ]; then
   export KARAF_DATA=/var/navajo/data
 fi
 
+if [ -z "$RMI_REGISTRY_PORT" ]; then
+  RMI_REGISTRY_PORT="31098"
+fi
+if [ -z "$RMI_SERVER_PORT" ]; then
+  export RMI_SERVER_PORT=34443
+fi
+if [ -z "$KARAF_SSH" ]; then
+  export KARAF_SSH=18100
+fi
+if [ -z "$HTTP_PORT" ]; then
+  export HTTP_PORT=7172
+fi
+if [ -z "$MAIN_BRANCH" ]; then
+  export MAIN_BRANCH=master
+fi
+
 
