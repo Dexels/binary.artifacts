@@ -18,7 +18,6 @@
 
 DIRNAME=`dirname "$0"`
 PROGNAME=`basename "$0"`
-source ./variables.sh
 
 #
 # Sourcing environment settings for karaf similar to tomcats setenv
