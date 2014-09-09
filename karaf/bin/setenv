@@ -47,6 +47,9 @@
 # export KARAF_OPTS # Additional available Karaf options
 # export KARAF_DEBUG # Enable debug mode
 
+export NAVAJO_OPTS="-DNAVAJO_DEPLOYMENT=${NAVAJO_DEPLOYMENT} -DNAVAJO_HTTPURL=${NAVAJO_HTTPURL} -DNAVAJO_NAME=${NAVAJO_NAME} -DNAVAJO_URL=${NAVAJO_URL} -DNAVAJO_DEPLOYMENT=${NAVAJO_DEPLOYMENT} -DNAVAJO_TYPE=${NAVAJO_TYPE}"
+
+
 if [ "x$KARAF_DATA" = "x" ]; then
   export KARAF_DATA=/var/navajo/data
 fi
